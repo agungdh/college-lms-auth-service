@@ -2,9 +2,12 @@
 
 namespace Database\Seeders;
 
+use App\Models\Role;
 use App\Models\User;
+
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Collection;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,11 +16,21 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        $roles = new Collection();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        $roles->push($this->generateRole('admin'));
+        $roles->push($this->generateRole('management'));
+        $roles->push($this->generateRole('student'));
+    }
+
+    private function generateRole(string $roleName): Role
+    {
+        $role = new Role();
+
+        $role->role = $roleName;
+
+        $role->save();
+
+        return $role;
     }
 }
