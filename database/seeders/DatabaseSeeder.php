@@ -2,13 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Role;
 use App\Models\User;
-
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Service\RoleService;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Collection;
 
 class DatabaseSeeder extends Seeder
 {
@@ -20,9 +17,9 @@ class DatabaseSeeder extends Seeder
         $roleService->prepareRoles();
 
         $roleService->getRoles()->each(function ($role) {
-           User::factory(10)->create([
-               'role_id' => $role->id,
-           ]);
+            User::factory(10)->create([
+                'role_id' => $role->id,
+            ]);
         });
     }
 }

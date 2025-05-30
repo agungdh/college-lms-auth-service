@@ -17,7 +17,7 @@ class RoleService
 
     private function generateRole(string $roleName): Role
     {
-        $role = new Role();
+        $role = new Role;
 
         $role->role = $roleName;
 
@@ -44,7 +44,7 @@ class RoleService
     {
         $role = Role::find($id);
 
-        if (!$role) {
+        if (! $role) {
             throw new \Exception("Role with ID {$id} not found.");
         }
 
