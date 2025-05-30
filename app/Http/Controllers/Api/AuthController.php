@@ -31,7 +31,7 @@ class AuthController extends Controller
                     'client_secret' => $client->secret,
                     'username' => $request->email,
                     'password' => $request->password,
-                    'scope' => '',
+                    'scope' => 'user:read',
                 ],
             ]);
 
