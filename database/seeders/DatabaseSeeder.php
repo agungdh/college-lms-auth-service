@@ -18,5 +18,11 @@ class DatabaseSeeder extends Seeder
     public function run(RoleService $roleService): void
     {
         $roleService->prepareRoles();
+
+        $roleService->getRoles()->each(function ($role) {
+           User::factory(10)->create([
+               'role_id' => $role->id,
+           ]);
+        });
     }
 }

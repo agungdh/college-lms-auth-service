@@ -3,6 +3,7 @@
 namespace App\Service;
 
 use App\Models\Role;
+use Illuminate\Support\Collection;
 
 class RoleService
 {
@@ -39,7 +40,8 @@ class RoleService
         return Role::where('role', $roleName)->first();
     }
 
-    public function getRoleById(int $id): Role {
+    public function getRoleById(int $id): Role
+    {
         $role = Role::find($id);
 
         if (!$role) {
@@ -49,15 +51,23 @@ class RoleService
         return $role;
     }
 
-    public function getRoleAdmin(): Role {
+    public function getRoleAdmin(): Role
+    {
         return $this->getRoleByName('admin');
     }
 
-    public function getRoleManagement(): Role {
+    public function getRoleManagement(): Role
+    {
         return $this->getRoleByName('management');
     }
 
-    public function getRoleStudent(): Role {
+    public function getRoleStudent(): Role
+    {
         return $this->getRoleByName('student');
+    }
+
+    public function getRoles(): Collection
+    {
+        return Role::all();
     }
 }
